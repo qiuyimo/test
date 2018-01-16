@@ -1,2 +1,2 @@
 # test
-This is a demo
+This is test for php script.
