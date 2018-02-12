@@ -1,6 +1,5 @@
 {
-  "require":{
-    "symfony/var-dumper": "3.4.3",
-    "kriswallsmith/buzz": "0.15.2"
-  }
+    "require": {
+        "symfony/var-dumper": "~4.0.4"
+    }
 }
