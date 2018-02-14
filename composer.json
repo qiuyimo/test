@@ -1,5 +1,6 @@
 {
     "require": {
-        "symfony/var-dumper": "~4.0.4"
+        "symfony/var-dumper": "~4.0.4",
+        "monolog/monolog": "^1.23"
     }
 }
