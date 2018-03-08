@@ -10,6 +10,7 @@ require dirname(__FILE__)."/../vendor/autoload.php";
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
+use Monolog\Handler\SwiftMailerHandler;
 use Monolog\Processor\UidProcessor;
 use Monolog\Processor\ProcessIdProcessor;
 use Monolog\Formatter\JsonFormatter;
@@ -30,6 +31,13 @@ $streamHander2 = new StreamHandler(__DIR__.'/testLog2.log', Logger::INFO);
 // 入栈, 往 handler stack 里压入 StreamHandler 的实例
 $logger->pushHandler($streamHander2);
 
+// 日志处理器.
+$mailer = new Swift_Mailer((new Swift_SmtpTransport('smtp.163.com', 25))->setUsername('promopure@163.com')->setPassword('qiuyu123'));
+$message = (new Swift_Message())->setFrom(['promopure@163.com' => 'promopure'])->setTo(['530004000@qq.com']);
+$message->setSubject('警告, 快点来看看这个情况.')->setBody('快点来看看这个情况, 需要快点处理一下.');
+$emailHander = new SwiftMailerHandler($mailer, $message);
+$logger->pushHandler($emailHander);
+
 /**
  * processor 日志加工程序，用来给日志添加额外信息.
  *
@@ -39,7 +47,10 @@ $logger->pushHandler($streamHander2);
 $logger->pushProcessor(new UidProcessor());
 $logger->pushProcessor(new ProcessIdProcessor());
 $logger->pushProcessor(function ($record) {
-    $record['message'] = 'Hello ' . $record['message'];
+    dump('[' . date("Y-m-d H:i:s", time()) . '] ' . $record['message']);
+    if ($record['context']) {
+        dump($record['context']);
+    }
     return $record;
 });
 
@@ -52,4 +63,23 @@ $logger->pushProcessor(function ($record) {
  * 第二个参数为数组格式, 通过使用使用上下文(context)添加了额外的数据.
  * 简单的处理器（比如StreamHandler）将只是把数组转换成字符串。而复杂的处理器则可以利用上下文的优点（如 FirePHP 则将以一种优美的方式显示数组）.
  */
-$logger->info('Welcome to QiuYu Blog.', ['username' => 'QiuYu']);
+$info = [
+    "keywords" => "",
+    "title" => "Cuffed Beanies for $30",
+    "description" => "Available whilst stocks last.",
+    "third_part_id" => "14185192",
+    "source_detail_url" => "https://www.anycodes.com/coupon-detail-14185192.html",
+    "list_url" => "https://www.anycodes.com/promo-codes/loveyourmelon.com",
+    "store_id" => 5065,
+    "type" => "",
+    "source" => "anycodes",
+    "verify" => 0,
+    "create_time" => 1519954797,
+    "modify_time" => "2018-03-02 09:39:57",
+    "link" => "https://www.loveyourmelon.com/collections/cuffedhats",
+];
+$logger->info('商城信息', $info);
+
+$logger->info('操作记录, 遇到反爬虫');
+
+$logger->error('打开网页错误');
