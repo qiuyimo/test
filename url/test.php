@@ -10,9 +10,10 @@ $url = '//images10.newegg.com/ProductImageCompressAll300/11-146-238-03.jpg';
 // $url = 'images10.newegg.com/ProductImageCompressAll300/11-146-238-03.jpg';
 // $url = 'https://images10.newegg.com/ProductImageCompressAll300/11-146-238-03.jpg';
 // $url = 'http://images10.newegg.com/ProductImageCompressAll300/11-146-238-03.jpg';
-// $url = 'https://images10.newegg.com:8080/ProductImageCompressAll300/11-146-238-03.jpg?a=abc&b=123#44';
+$url = 'https://images10.newegg.com:8080/ProductImageCompressAll300/11-146-238-03.jpg?a=abc&b=123#44';
 // $url = '/ProductImageCompressAll300/11-146-238-03.jpg?a=abc&b=123#44';
-
+dump(parse_url($url));
+die;
 $domain = 'https://images10.newegg.com';
 
 dump(inspectUrl($url, $domain));
