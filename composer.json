@@ -4,6 +4,7 @@
         "monolog/monolog": "^1.23",
         "phpunit/phpunit": "^7.0.1",
         "swiftmailer/swiftmailer": "~6.0.0",
-        "illuminate/database": "~5.6.9"
+        "illuminate/database": "~5.6.9",
+        "intervention/image": "~2.4.1"
     }
 }
