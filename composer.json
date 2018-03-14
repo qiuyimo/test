@@ -6,6 +6,9 @@
         "swiftmailer/swiftmailer": "~6.0.0",
         "illuminate/database": "~5.6.9",
         "intervention/image": "~2.4.1",
-        "jms/serializer" : "~1.11.0"
+        "jms/serializer" : "~1.11.0",
+        "guzzlehttp/guzzle": "^6.3",
+        "symfony/dom-crawler": "^4.0",
+        "symfony/css-selector": "^4.0"
     }
 }
