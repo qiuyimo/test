@@ -25,9 +25,9 @@ class Example
     }
 }
 
-register_shutdown_function('downFirst');
-register_shutdown_function('downSecond');
-register_shutdown_function('downThird');
+// register_shutdown_function('downFirst');
+// register_shutdown_function('downSecond');
+// register_shutdown_function('downThird');
 
 set_exception_handler('exceptionHandlerFirst');
 $example = new Example;
@@ -53,6 +53,8 @@ function exceptionHandlerSecond($e)
 function exceptionHandlerThird($e)
 {
     dump(__METHOD__);
+
+    throw new Exception('DOH!!');
 }
 
 function downFirst()
