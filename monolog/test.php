@@ -9,27 +9,37 @@
 require dirname(__FILE__)."/../vendor/autoload.php";
 
 use Monolog\Logger;
+use Monolog\Registry;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\SwiftMailerHandler;
 use Monolog\Processor\UidProcessor;
 use Monolog\Processor\ProcessIdProcessor;
 use Monolog\Formatter\JsonFormatter;
+use Handle\Handle;
 
 // 实例化一个日志实例, 参数是 channel name
-$logger = new Logger('qiuyuhome');
+$logger = new Logger('spider');
+Registry::addLogger($logger);
 
-// StreamHandler_1
-$streamHander1 = new StreamHandler(__DIR__.'/testLog1.log', Logger::INFO);
-// 设置日志格式为json
-$streamHander1->setFormatter(new JsonFormatter());
-// 入栈, 往 handler stack 里压入 StreamHandler 的实例
-$logger->pushHandler($streamHander1);
+try {
+    // StreamHandler_1
+    $streamHander1 = new StreamHandler(__DIR__ . '/testLog1.log', Logger::INFO);
+    // 设置日志格式为json
+    $streamHander1->setFormatter(new JsonFormatter());
+    // 入栈, 往 handler stack 里压入 StreamHandler 的实例
+    $logger->pushHandler($streamHander1);
+} catch (Exception $e) {
+}
 
-// StreamHandler_2
-// 如果第三个参数为false, 则只会执行这个一个Handler. 默认是true
-$streamHander2 = new StreamHandler(__DIR__.'/testLog2.log', Logger::INFO);
-// 入栈, 往 handler stack 里压入 StreamHandler 的实例
-$logger->pushHandler($streamHander2);
+try {
+    // StreamHandler_2
+    // 如果第三个参数为false, 则只会执行这个一个Handler. 默认是true
+    $streamHander2 = new StreamHandler(__DIR__ . '/testLog2.log', Logger::INFO);
+    // 入栈, 往 handler stack 里压入 StreamHandler 的实例
+    $logger->pushHandler($streamHander2);
+} catch (Exception $e) {
+}
+
 
 // 日志处理器.
 $mailer = new Swift_Mailer((new Swift_SmtpTransport('smtp.163.com', 25))->setUsername('promopure@163.com')->setPassword('qiuyu123'));
@@ -83,3 +93,7 @@ $logger->info('商城信息', $info);
 $logger->info('操作记录, 遇到反爬虫');
 
 $logger->error('打开网页错误');
+
+Registry::spider()->addError('Sent to $api Logger instance');
+Registry::spider()->info('test registry');
+Registry::spider()->error('test registry');
