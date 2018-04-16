@@ -14,7 +14,7 @@ use Illuminate\Container\Container;
 use User\UserManager;
 
 $container = Container::getInstance();
-
+dump(UserManager::class);
 $userManager = $container->make(UserManager::class);
 $res = $userManager->register('530004000@qq.com', 'password');
 dump($res);
