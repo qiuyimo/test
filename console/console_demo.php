@@ -17,7 +17,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 $console = new Application('SpiderPure', '1.0.0');
 
 // 注册一个命令.
-$command = $console->register('spider');
+$command = $console->register('spider:amazon');
 
 // 命令的参数.
 $command->addArgument('name', InputArgument::OPTIONAL, 'Name of the person');
