@@ -14,9 +14,9 @@ use Symfony\Component\Debug\ExceptionHandler;
 use Symfony\Component\Debug\DebugClassLoader;
 
 Debug::enable();
-ErrorHandler::register();
-ExceptionHandler::register();
-DebugClassLoader::enable();
+// ErrorHandler::register();
+// ExceptionHandler::register();
+// DebugClassLoader::enable();
 
 // 实例化一个不存在的类. 应该报错. 测试结果.
 new aaa();
