@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--<link href="prism.css" rel="stylesheet"/>-->
+    <!--<link href="prism_source.css" rel="stylesheet"/>-->
+    <!--<link href="prism_all.css" rel="stylesheet"/>-->
+    <link href="prism_line-number_dev.css" rel="stylesheet"/>
+
+    <!--<script src="prism.js"></script>-->
+    <!--<script src="prism_source.js"></script>-->
+    <!--<script src="prism_all.js"></script>-->
+    <script src="prism_line-number_dev.js"></script>
+
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+    {{$html}}
+
+    <script>
+        // $(document).ready(function () {
+        //     var doc_pre = $("#post_content pre");
+        //     doc_pre.each(function () {
+        //         var class_val = $(this).attr('class');
+        //         var class_arr = new Array();
+        //         class_arr = class_val.split(';');
+        //         class_arr = class_arr['0'].split(':');
+        //         var lan_class = 'language-' + class_arr['1'];
+        //         var pre_content = '<code class="' + lan_class + '">' + $(this).html() + '</code>';
+        //         $(this).html(pre_content);
+        //         $(this).attr("class", 'line-numbers ' + lan_class);
+        //     });
+        // });
+        $("pre").addClass('line-numbers').css('size', '8');
+    </script>
+</body>
+</html>
